@@ -1,0 +1,29 @@
+//leentCode-->125. Valid Palindrome
+//writed by Ying Zhou
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        bool result = true;
+        int length = s.length();
+        if (length == 0) {
+            return true;
+        }
+        int i = 0;
+        int j = length - 1;
+        while (i <= j) {
+            bool leftCharCheck = (isalpha(s[i]) || isdigit(s[i])) ? true : false;
+            bool rightCharCheck = (isalpha(s[j]) || isdigit(s[j])) ? true : false;
+            if (leftCharCheck && rightCharCheck) {
+                if (towupper(s[i]) != towupper(s[j])) {
+                    return false;
+                }
+                i++;
+                j--;
+            }
+            i = (leftCharCheck) ? i : i+1;
+            j = (rightCharCheck) ? j : j-1;
+        }
+        return result;
+    }
+};

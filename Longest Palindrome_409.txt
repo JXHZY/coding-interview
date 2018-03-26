@@ -1,0 +1,56 @@
+//leentCode-->409. Longest Palindrome
+//writed by Ying Zhou
+
+
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        int result = 0;
+        int hasSignal = false;
+        map<char,int> summy;
+        int length = s.length();
+        for (int i=0; i<length; i++) {
+            summy[s[i]]++;
+        }
+        for (auto it=summy.begin(); it!=summy.end(); it++) {
+            if (it->second %2 == 0) {
+                result += it->second;
+            } else {
+                hasSignal = true;
+                result += it->second - 1;
+            }
+        }
+        return (hasSignal) ? result+1 : result;
+    }
+    
+    /*
+    string longestPalindrome(string s) {
+        string resultPart1 = "";
+        string resultPart2 = "";
+        int hasSignal = false;
+        char mindChar;
+        map<char,int> summy;
+        int length = s.length();
+        for (int i=0; i<length; i++) {
+            summy[s[i]]++;
+        }
+        for (auto it=summy.begin(); it!=summy.end(); it++) {
+            if (it->second %2 == 0) {
+                for(int help = 0; help < it->second/2; help++) {
+                    resultPart1 = it->first+resultPart1;
+                    resultPart2 = resultPart2+it->first;
+                }
+            } else {
+                hasSignal = true;
+                mindChar = it->first;
+                for(int help = 0; help < (it->second-1)/2; help++) {
+                    resultPart1 = it->first+resultPart1;
+                    resultPart2 = resultPart2+it->first;
+                }
+            }
+        }
+        return (hasSignal) ? resultPart1+mindChar+resultPart2 : resultPart1+resultPart2;
+        
+    }
+    */
+};
