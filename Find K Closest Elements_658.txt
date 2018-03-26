@@ -1,0 +1,30 @@
+//658. Find K Closest Elements
+//writed by Ying Zhou
+
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        map<int,vector<int>> summy;
+        vector<int> result;
+        for (auto it=arr.begin(); it!=arr.end(); it++) {
+            int keep = abs(*it - x);
+            summy[keep].push_back(*it);
+        }
+        int number = 0;
+        for (auto i=summy.begin(); i!=summy.end(); i++) {
+            if (number >= k) {
+                    break;
+            }
+            vector<int> keepChild = i->second;
+            for (auto j=keepChild.begin(); j!=keepChild.end(); j++) {
+                result.push_back(*j);
+                number++;
+                if (number >= k) {
+                    break;
+                }
+            }
+        }
+        sort(result.begin(), result.end());
+        return result;
+    }
+};
