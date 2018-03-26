@@ -1,0 +1,18 @@
+//leentCode-->27. Remove Element
+//writed by Ying Zhou
+
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        sort(nums.begin(), nums.end());
+        std::vector<int>::iterator it;
+        it = std::find(nums.begin(), nums.end(), val);
+        if (it != nums.end()) {
+            for (it; *it == val && it!=nums.end(); ) {
+                nums.erase(it);
+            }
+        }
+        return nums.size();
+    }
+};

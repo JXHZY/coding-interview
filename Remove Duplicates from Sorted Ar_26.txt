@@ -1,0 +1,26 @@
+//leentCode-->26. Remove Duplicates from Sorted Array
+//writed by Ying Zhou
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        //map<int,int> result;
+        int keep;
+        int result = 0;
+        auto keepPoint = nums.begin();
+        for (auto it = nums.begin(); it!=nums.end(); it++) {
+            if (it == nums.begin()) {
+                keep = *it;
+                result++;
+                keepPoint++;
+            } else if (keep != *it) {
+                *keepPoint = *it;
+                result++;
+                keepPoint++;
+                keep = *it;
+            }
+        }
+        return result;
+        
+    }
+};

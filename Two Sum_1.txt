@@ -1,0 +1,28 @@
+//leentCode-->1. Two Sum
+//writed by Ying Zhou
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> result;
+        vector<int>::iterator firstAdd = nums.begin();
+        int minTarget;
+        int firstPosition = 0;
+        int secondPosition = 0;
+
+        while (firstAdd < nums.end() - 1) {
+            secondPosition = firstPosition + 1;
+            for (vector<int>::iterator secondAdd = firstAdd + 1; secondAdd < nums.end(); secondAdd++) {
+                if (*firstAdd + *secondAdd == target) {
+                    result.push_back(firstPosition);
+                    result.push_back(secondPosition);
+                    return result;
+                }
+                secondPosition++;
+            }
+            firstPosition++;
+            firstAdd++;
+        }
+        return result;
+    }
+};
